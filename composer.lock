@@ -1,0 +1,121 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "8c01fcd1126913ca781b9914ebf1c15d",
+    "packages": [
+        {
+            "name": "radyakaze/phptelebot",
+            "version": "v1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/radyakaze/phptelebot.git",
+                "reference": "37b5553af02bc04a4fdf9eefec2e61e52e9e5a1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/radyakaze/phptelebot/zipball/37b5553af02bc04a4fdf9eefec2e61e52e9e5a1d",
+                "reference": "37b5553af02bc04a4fdf9eefec2e61e52e9e5a1d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4"
+            },
+            "type": "framework",
+            "autoload": {
+                "files": [
+                    "src/PHPTelebot.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Radya",
+                    "email": "radya@gmx.com"
+                }
+            ],
+            "description": "Telegram bot framework written in PHP.",
+            "keywords": [
+                "bot",
+                "telegram"
+            ],
+            "support": {
+                "issues": "https://github.com/radyakaze/phptelebot/issues",
+                "source": "https://github.com/radyakaze/phptelebot/tree/master"
+            },
+            "time": "2016-11-29T03:50:53+00:00"
+        },
+        {
+            "name": "rakibtg/sleekdb",
+            "version": "2.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rakibtg/SleekDB.git",
+                "reference": "c8a59b529c00c1eefc61290feaa84771bde53121"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rakibtg/SleekDB/zipball/c8a59b529c00c1eefc61290feaa84771bde53121",
+                "reference": "c8a59b529c00c1eefc61290feaa84771bde53121",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5",
+                "spatie/phpunit-watcher": "^1.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SleekDB\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rakibtg",
+                    "email": "rakibtg@gmail.com"
+                }
+            ],
+            "description": "SleekDB - A 30Kb NoSQL Database made using PHP",
+            "keywords": [
+                "SleekDB",
+                "api",
+                "database",
+                "flatfile",
+                "framework",
+                "micro",
+                "nosql",
+                "php",
+                "rest"
+            ],
+            "support": {
+                "issues": "https://github.com/rakibtg/SleekDB/issues",
+                "source": "https://github.com/rakibtg/SleekDB/tree/2.12.1"
+            },
+            "time": "2021-07-31T22:53:31+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

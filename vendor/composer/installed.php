@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => NULL,
+        'name' => '__root__',
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => NULL,
+            'dev_requirement' => false,
+        ),
+        'radyakaze/phptelebot' => array(
+            'pretty_version' => 'v1.3',
+            'version' => '1.3.0.0',
+            'type' => 'framework',
+            'install_path' => __DIR__ . '/../radyakaze/phptelebot',
+            'aliases' => array(),
+            'reference' => '37b5553af02bc04a4fdf9eefec2e61e52e9e5a1d',
+            'dev_requirement' => false,
+        ),
+        'rakibtg/sleekdb' => array(
+            'pretty_version' => '2.12.1',
+            'version' => '2.12.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rakibtg/sleekdb',
+            'aliases' => array(),
+            'reference' => 'c8a59b529c00c1eefc61290feaa84771bde53121',
+            'dev_requirement' => false,
+        ),
+    ),
+);
