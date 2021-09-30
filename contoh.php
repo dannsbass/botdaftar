@@ -15,7 +15,7 @@ require_once(__DIR__.'/vendor/autoload.php');
 require_once(__DIR__.'/src/Tolong.php');
 
 # sesuaikan dengan token dan username bot kamu
-$token_bot = '16541*****:AAFgtnkz6d0_QOzulBOdR8hTROly4r*****';
+$token_bot = '1654******:AAFgtnkz6d0_QOzulBOdR8hTROly4rea***';
 $username_bot = 'contohbot';
 
 # direktori untuk menyimpan data kamu (bisa diubah kalau mau atau biarkan saja)

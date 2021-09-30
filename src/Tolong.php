@@ -1,13 +1,15 @@
 <?php
 
-class Tolong extends \SleekDB\Store
+class Tolong
 {
   private $dir;
   private $ids;
+  private $store;
   
   public function __construct($store){
-    $this->dir = $store->databasePath.'/'.$store->storeName;
-    $this->ids = $this->dir."/_ids";
+    $this->dir = $store->getStorePath();
+    $this->ids = $this->dir."_ids";
+    $this->store = $store;
   }
   
   private function ambilDataIDs(){
@@ -37,11 +39,13 @@ class Tolong extends \SleekDB\Store
         break;
       }
     }
-    $hasil = isset($hasil) ? $hasil : false;
+    $hasil = isset($hasil) ? (int)$hasil : false;
     if(false === $hasil){
-      exit('hasil false');
+      throw new Exception('hasil false');
     }
+    
     $data_user = json_decode(file_get_contents($this->dir."/data/$hasil.json"),true);
+    
     return $data_user;
   }
   
