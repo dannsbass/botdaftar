@@ -16,6 +16,13 @@
 class Bot
 {
     /**
+     * Bot response debug.
+     * 
+     * @var string
+     */
+    public static $debug = '';
+
+    /**
      * Send request to telegram api server.
      *
      * @param string $action
@@ -23,13 +30,6 @@ class Bot
      *
      * @return array|bool
      */
-    
-    /**
-     * Bot debug
-     * @var array
-     */
-    public static $debug = '';
-
     public static function send($action = 'sendMessage', $data = [])
     {
         $upload = false;
@@ -48,7 +48,7 @@ class Bot
         if (in_array($action, $needChatId) && !isset($data['chat_id'])) {
             $getUpdates = PHPTelebot::$getUpdates;
             if (isset($getUpdates['callback_query'])) {
-                $getUpdates['callback_query'];
+                $getUpdates = $getUpdates['callback_query'];
             }
             $data['chat_id'] = $getUpdates['message']['chat']['id'];
             // Reply message
@@ -62,13 +62,17 @@ class Bot
             $data['reply_markup'] = json_encode($data['reply_markup']);
         }
 
+# tambahan danns mulai
+if (function_exists('curl_version')) {
+# tambahan danns selesai
+
         $ch = curl_init();
         $options = [
             CURLOPT_URL => 'https://api.telegram.org/bot'.PHPTelebot::$token.'/'.$action,
             CURLOPT_POST => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYHOST => false,
-            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYPEER => false
         ];
 
         if (is_array($data)) {
@@ -88,6 +92,38 @@ class Bot
         }
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
+# tambahan danns mulai        
+}else{
+  $url = 'https://api.telegram.org/bot'.PHPTelebot::$token.'/'.$action;
+  
+  if (is_array($data)) {
+    $data = $data;
+  }
+
+$data = http_build_query($data);
+
+# header
+if ($upload !== false) {
+  $header = 'Content-Type: multipart/form-data';
+}else{
+  $header = 'Content-Type: application/x-www-form-urlencoded';
+}
+
+$opts=[
+'http'=>[
+'method'=>"POST",
+'header'=>$header,
+'content'=>$data
+   ]
+];
+
+$context=stream_context_create($opts);
+
+$result=file_get_contents($url,false,$context);
+$httpcode = null;
+}
+#tambahan danns selesai
 
         if (PHPTelebot::$debug && $action != 'getUpdates') {
             self::$debug .= 'Method: '.$action."\n";
