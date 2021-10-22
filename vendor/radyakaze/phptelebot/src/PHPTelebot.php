@@ -69,7 +69,7 @@ class PHPTelebot
 
         // Check curl
         if (!function_exists('curl_version')) {
-            die("cURL is NOT installed on this server.\n");
+            #die("cURL is NOT installed on this server.\n"); # sudah dihandle oleh file_get_contents
         }
 
         // Check bot token
@@ -160,6 +160,7 @@ class PHPTelebot
             self::$getUpdates = json_decode(file_get_contents('php://input'), true);
             echo $this->process();
         } else {
+            http_response_code(400);
             throw new Exception('Access not allowed!');
         }
     }
@@ -189,13 +190,12 @@ class PHPTelebot
                     $process = $this->process();
 
                     if (self::$debug) {
-                        $response = Bot::$debug?: $process;
-                        // reset debug
-                        Bot::$debug = '';
                         $line = "\n--------------------\n";
                         $outputFormat = "$line %s $update[update_id] $line%s";
                         echo sprintf($outputFormat, 'Query ID :', json_encode($update));
-                        echo sprintf($outputFormat, 'Response for :', isset($response) ? $response : '--NO RESPONSE--');
+                        echo sprintf($outputFormat, 'Response for :', Bot::$debug?: $process ?: '--NO RESPONSE--');
+                        // reset debug
+                        Bot::$debug = '';
                     }
                     $offset = $update['update_id'] + 1;
                 }
@@ -216,6 +216,10 @@ class PHPTelebot
         $get = self::$getUpdates;
         $run = false;
 
+        if (isset($get['message']['date']) && $get['message']['date'] < (time() - 120)) {
+            return '-- Pass --';
+        }
+
         if (Bot::type() == 'text') {
             $customRegex = false;
             foreach ($this->_command as $cmd => $call) {
@@ -227,12 +231,7 @@ class PHPTelebot
                      }
                     $customRegex = true;
                 } else {
-                    if (self::$username != '') {
-                        $username = '(?:@'.self::$username.')?';
-                    } else {
-                        $username = '';
-                    }
-                    $regex = '/^(?:'.addcslashes($cmd, '/\+*?[^]$(){}=!<>:-').')'.$username.'(?:\s(.*))?$/';
+                    $regex = '/^(?:'.addcslashes($cmd, '/\+*?[^]$(){}=!<>:-').')'.(self::$username ? '(?:@'.self::$username.')?' : '').'(?:\s(.*))?$/';
                 }
                 if ($get['message']['text'] != '*' && preg_match($regex, $get['message']['text'], $matches)) {
                     $run = true;
